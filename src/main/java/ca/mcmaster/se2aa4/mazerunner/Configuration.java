@@ -23,13 +23,13 @@ public class Configuration {
         BufferedReader reader = new BufferedReader(new FileReader(cmd.getOptionValue('i')));
         logger.info("**** Reading the maze from file " + cmd.getOptionValue('i'));
         if (cmd.hasOption('p')){
-            PathValidate validator = new PathValidate();
-            String valid = validator.path_valid(reader);
+            ValidateMaze validator = new ValidateMaze();
+            String valid = validator.path_valid(cmd.getOptionValue('p'));
             System.out.printf("%s\n", valid);
         }
         else{
-            MazeExplore explorer = new MazeExplore();
-            String path = explorer.pathlength(reader);
+            Maze explorer = new Maze();
+            String path = explorer.findpath(reader);
             System.out.printf("%s\n", path);
         }
         return reader;
