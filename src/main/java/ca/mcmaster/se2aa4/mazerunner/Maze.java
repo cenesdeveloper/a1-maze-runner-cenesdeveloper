@@ -13,7 +13,13 @@ public class Maze {
         ArrayList<String> str = printmaze(reader);
         char[][] x = storemaze(str);
         String path = maze.explore(x);
-        return path;
+        int counter = 1;
+        for (int i = 0; i < path.length() - 1; i++){
+            if (path.charAt(i) == path.charAt(i+1)){
+                counter++;
+            }
+        }
+        return path.format("%d%s", counter, path.charAt(0));
     }
     public static ArrayList<String> printmaze(BufferedReader reader) throws IOException {
         String line;
