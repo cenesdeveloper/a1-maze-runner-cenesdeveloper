@@ -24,7 +24,7 @@ public class Configuration {
         logger.info("**** Reading the maze from file " + cmd.getOptionValue('i'));
         if (cmd.hasOption('p')){
             ValidateMaze validator = new ValidateMaze();
-            String valid = validator.path_valid(cmd.getOptionValue('p'));
+            String valid = validator.path_valid(cmd.getOptionValue('p').strip());
             System.out.printf("%s\n", valid);
         }
         else{

@@ -17,7 +17,7 @@ public class Main {
             Configuration configure = new Configuration();
             BufferedReader reader = configure.config(args);
             Maze explore = new Maze();
-            explore.printmaze(reader);
+            explore.storemaze(reader);
             System.exit(0);
 
         } catch(Exception e) {
