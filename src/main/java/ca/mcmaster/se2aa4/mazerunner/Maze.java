@@ -8,9 +8,11 @@ import java.util.Arrays;
 public class Maze {
     public static int row = 0;
     public static int column = 0;
-    public static String findpath(BufferedReader reader){
+    public static String findpath(BufferedReader reader) throws IOException {
         ExploreMaze maze = new ExploreMaze();
-        String path = maze.explore();
+        ArrayList<String> str = printmaze(reader);
+        char[][] x = storemaze(str);
+        String path = maze.explore(x);
         return path;
     }
     public static ArrayList<String> printmaze(BufferedReader reader) throws IOException {
@@ -34,7 +36,6 @@ public class Maze {
             System.out.print(System.lineSeparator());
         }
         System.out.println();
-        storemaze(arr);
         return arr;
     }
     public static char[][] storemaze(ArrayList<String> lst) throws IOException {
@@ -61,7 +62,6 @@ public class Maze {
             }
             System.out.println();
         }
-        Enter_Exit(arr);
         return arr;
     }
     public static int[] Enter_Exit(char[][] arr){

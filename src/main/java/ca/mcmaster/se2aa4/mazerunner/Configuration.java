@@ -8,13 +8,15 @@ import org.apache.commons.cli.Options;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+
 import org.apache.commons.cli.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Configuration {
     private static final Logger logger = LogManager.getLogger();
-    public static BufferedReader config(String[] args) throws FileNotFoundException, ParseException {
+    public static BufferedReader config(String[] args) throws IOException, ParseException {
         Options options = new Options();
         options.addOption("i","input", true,"maze file path");
         options.addOption("p","path",true,"maze sequence");
