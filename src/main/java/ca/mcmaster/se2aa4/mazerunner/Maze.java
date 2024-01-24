@@ -3,18 +3,19 @@ package ca.mcmaster.se2aa4.mazerunner;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Maze {
+    public static int row = 0;
+    public static int column = 0;
     public static String findpath(BufferedReader reader){
         ExploreMaze maze = new ExploreMaze();
         String path = maze.explore();
         return path;
     }
-    public static void storemaze(BufferedReader reader) throws IOException {
+    public static ArrayList<String> printmaze(BufferedReader reader) throws IOException {
         String line;
-        ArrayList<String> lst = new ArrayList<>();
-        int row = 0;
-        int column = 0;
+        ArrayList<String> arr = new ArrayList<String>();
         while ((line = reader.readLine()) != null) {
             int max_wall = 0;
             for (int idx = 0; idx < line.length(); idx++) {
@@ -25,17 +26,25 @@ public class Maze {
                     System.out.print("PASS ");
                 }
             }
-            lst.add(line);
+            arr.add(line);
             if (max_wall > column){
                 column = max_wall;
             }
             row++;
             System.out.print(System.lineSeparator());
         }
-
         System.out.println();
+        storemaze(arr);
+        return arr;
+    }
+    public static char[][] storemaze(ArrayList<String> lst) throws IOException {
         char arr[][] = new char[row][column];
-
+        String line;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                arr[i][j] = ' ';
+            }
+        }
         for (int i = 0; i < lst.size(); i++) {
             line = lst.get(i);
             for (int j = 0; j < line.length(); j++) {
@@ -46,15 +55,38 @@ public class Maze {
                 }
             }
         }
-
         for (int n = 0; n < row; n++){
             for (int j = 0; j < column; j++){
-                System.out.printf("%s", arr[n][j]);
+                System.out.print(arr[n][j]);
             }
             System.out.println();
         }
+        Enter_Exit(arr);
+        return arr;
+    }
+    public static int[] Enter_Exit(char[][] arr){
+        int first_i = 0;
+        int first_j = 0;
+        int last_i = 0;
+        int last_j = 0;
+        int row = arr.length;
+        int col = arr[0].length;
 
-//        System.out.printf("Number of columns: %d\n", column);
-//        System.out.printf("Number of rows: %d\n", row);
+        for (int i = 0; i < row; i++){
+            for (int j = 0; j < col; j++){
+                if (j == 0 && arr[i][j] == ' '){
+                    first_i = i;
+                    first_j = j;
+                }
+                if (j == col-1 && arr[i][j] == ' '){
+                    last_i = i;
+                    last_j = j;
+                }
+            }
+        }
+        System.out.printf("Entrance: [%d, %d]\n", first_i, first_j);
+        System.out.printf("Exit: [%d, %d]\n", last_i, last_j);
+        int[] entr_end = new int[]{first_i, first_j, last_i, last_j};
+        return entr_end;
     }
 }
