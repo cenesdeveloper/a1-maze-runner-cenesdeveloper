@@ -23,16 +23,16 @@ public class Configuration {
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
         BufferedReader reader = new BufferedReader(new FileReader(cmd.getOptionValue('i')));
+        Maze explorer = new Maze();
         logger.info("**** Reading the maze from file " + cmd.getOptionValue('i'));
         if (cmd.hasOption('p')){
             ValidateMaze validator = new ValidateMaze();
-            String valid = validator.path_valid(cmd.getOptionValue('p').strip());
+            String valid = validator.path_valid(cmd.getOptionValue('p'), reader);
             System.out.printf("%s\n", valid);
         }
         else{
-            Maze explorer = new Maze();
-            String path = explorer.findpath(reader);
-            System.out.printf("%s\n", path);
+            String exp = explorer.find_path(reader);
+            System.out.printf("%s\n", exp);
         }
         return reader;
     }

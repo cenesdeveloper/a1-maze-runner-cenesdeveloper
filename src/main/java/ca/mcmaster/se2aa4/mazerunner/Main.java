@@ -16,7 +16,8 @@ public class Main {
         try {
             Configuration configure = new Configuration();
             BufferedReader reader = configure.config(args);
-            System.exit(0);
+            Maze maze = new Maze();
+            maze.store_maze(reader);
 
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");

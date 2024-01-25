@@ -1,9 +1,15 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import org.apache.commons.cli.ParseException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+
 public class ExploreMaze {
-    public static String explore(char[][] arr) {
+    public static String explore(BufferedReader reader) throws IOException, ParseException {
         String path = "";
         Maze maze = new Maze();
+        char[][] arr = maze.store_maze(reader);
         int[] enter = maze.Enter_Exit(arr);
 
         int i;
