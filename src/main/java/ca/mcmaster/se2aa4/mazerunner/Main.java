@@ -6,11 +6,8 @@ import java.io.IOException;
 import org.apache.commons.cli.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 public class Main {
-
     private static final Logger logger = LogManager.getLogger();
-
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
         try {
@@ -18,7 +15,6 @@ public class Main {
             BufferedReader reader = configure.config(args);
             Maze maze = new Maze();
             maze.store_maze(reader);
-
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");
             System.exit(1);

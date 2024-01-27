@@ -5,8 +5,6 @@ import org.apache.commons.cli.ParseException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Maze {
     public static int row = 0;
     public static int column = 0;
@@ -14,15 +12,6 @@ public class Maze {
     public static String find_path(BufferedReader reader) throws IOException, ParseException {
         ExploreMaze exp = new ExploreMaze();
         String path = exp.explore(reader);
-//        int counter = 1;
-//        for (int i = 0; i < path.length() - 1; i++){
-//            if (path.charAt(i) == path.charAt(i+1)){
-//                counter++;
-//            }
-//        }
-//        String count = String.valueOf(counter);
-//        char path1 = path.charAt(0);
-//        String path_final = count + path1;
         return path;
     }
     public static char[][] store_maze(BufferedReader reader) throws IOException {
@@ -32,10 +21,10 @@ public class Maze {
             int max_wall = 0;
             for (int idx = 0; idx < lines.length(); idx++) {
                 if (lines.charAt(idx) == '#') {
-                    System.out.print("WALL ");
+//                    System.out.print("WALL ");
                     max_wall++;
                 } else if (lines.charAt(idx) == ' ') {
-                    System.out.print("PASS ");
+//                    System.out.print("PASS ");
                 }
             }
             arr.add(lines);
@@ -64,12 +53,12 @@ public class Maze {
                 }
             }
         }
-        for (int n = 0; n < row; n++){
-            for (int j = 0; j < column; j++){
-                System.out.print(maze[n][j]);
-            }
-            System.out.println();
-        }
+//        for (int n = 0; n < row; n++){
+//            for (int j = 0; j < column; j++){
+//                System.out.print(maze[n][j]);
+//            }
+//            System.out.println();
+//        }
         return maze;
     }
     public static int[] Enter_Exit(char[][] arr){
@@ -92,8 +81,8 @@ public class Maze {
                 }
             }
         }
-        System.out.printf("Entrance: [%d, %d]\n", first_i, first_j);
-        System.out.printf("Exit: [%d, %d]\n", last_i, last_j);
+//        System.out.printf("Entrance: [%d, %d]\n", first_i, first_j);
+//        System.out.printf("Exit: [%d, %d]\n", last_i, last_j);
         int[] entr_end = new int[]{first_i, first_j, last_i, last_j};
         return entr_end;
     }
