@@ -14,16 +14,16 @@ public class Maze {
     public static String find_path(BufferedReader reader) throws IOException, ParseException {
         ExploreMaze exp = new ExploreMaze();
         String path = exp.explore(reader);
-        int counter = 1;
-        for (int i = 0; i < path.length() - 1; i++){
-            if (path.charAt(i) == path.charAt(i+1)){
-                counter++;
-            }
-        }
-        String count = String.valueOf(counter);
-        char path1 = path.charAt(0);
-        String path_final = count + path1;
-        return path_final;
+//        int counter = 1;
+//        for (int i = 0; i < path.length() - 1; i++){
+//            if (path.charAt(i) == path.charAt(i+1)){
+//                counter++;
+//            }
+//        }
+//        String count = String.valueOf(counter);
+//        char path1 = path.charAt(0);
+//        String path_final = count + path1;
+        return path;
     }
     public static char[][] store_maze(BufferedReader reader) throws IOException {
         String lines;
