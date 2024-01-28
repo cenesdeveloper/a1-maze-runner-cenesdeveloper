@@ -4,10 +4,8 @@ import org.apache.commons.cli.ParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Objects;
-
 public class ValidateMaze {
-    public static String path_valid(String arg_path, BufferedReader reader) throws IOException, ParseException {
+    public static String path_valid(String arg_path, BufferedReader reader) throws IOException{
         Maze maze = new Maze();
         char[][] arr = maze.store_maze(reader);
         int[] enter_exit = maze.Enter_Exit(arr);
@@ -15,9 +13,10 @@ public class ValidateMaze {
         int enter_j = enter_exit[1];
         int exit_i = enter_exit[2];
         int exit_j = enter_exit[3];
-        int n = arg_path.length();
         char direction = 'F';
-
+        arg_path = arg_path.replaceAll(" ", "");
+        arg_path = defactorize_path(arg_path);
+        int n = arg_path.length();
         for (int i = 0; i < n; i++){
             char c = arg_path.charAt(i);
             if (direction == 'F'){
@@ -30,6 +29,9 @@ public class ValidateMaze {
                 else if (c == 'L'){
                     direction = 'L';
                 }
+                else{
+                    break;
+                }
             }
             else if (direction == 'R'){
                 if (c == 'F'){
@@ -40,6 +42,9 @@ public class ValidateMaze {
                 }
                 else if (c == 'L'){
                     direction = 'F';
+                }
+                else {
+                    break;
                 }
             }
             else if (direction == 'L'){
@@ -52,6 +57,9 @@ public class ValidateMaze {
                 else if (c == 'L'){
                     direction = 'B';
                 }
+                else {
+                    break;
+                }
             }
             else{
                 if (c == 'F'){
@@ -63,6 +71,9 @@ public class ValidateMaze {
                 else if (c == 'L'){
                     direction = 'R';
                 }
+                else {
+                    break;
+                }
             }
         }
         if (enter_i == exit_i && enter_j == exit_j){
@@ -71,5 +82,30 @@ public class ValidateMaze {
         else {
             return "incorrect path";
         }
+    }
+    private static String defactorize_path(String arg_path){
+        int n = arg_path.length();
+        int num;
+        int i = 0;
+        StringBuilder factorized_path = new StringBuilder();
+
+        while (i < n){
+            if (Character.isDigit(arg_path.charAt(i))){
+                String count = new String("");
+                while (Character.isDigit(arg_path.charAt(i))){
+                    count += (arg_path.charAt(i));
+                    i++;
+                }
+                num = Integer.parseInt(count);
+                for (int j = 1; j < num; j++){
+                    factorized_path.append(arg_path.charAt(i));
+                }
+            }
+            else {
+                factorized_path.append(arg_path.charAt(i));
+                i++;
+            }
+        }
+        return factorized_path.toString();
     }
 }

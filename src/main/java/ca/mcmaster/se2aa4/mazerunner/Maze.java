@@ -9,32 +9,50 @@ public class Maze {
     public static int row = 0;
     public static int column = 0;
 
-    public static String find_path(BufferedReader reader) throws IOException, ParseException {
+    public static String find_path(BufferedReader reader) throws IOException{
         ExploreMaze exp = new ExploreMaze();
-        String path = exp.explore(reader);
-        return path;
+        String arg_path = exp.explore(reader);
+        int n = arg_path.length();
+        char last_c;
+        StringBuilder factorized_path = new StringBuilder();
+        int a, counter, b;
+        int i = 0;
+        while (i < n){
+            a = i+1;
+            last_c = arg_path.charAt(i);
+            char c = arg_path.charAt(a);
+            counter = 1;
+            while (a < n && c == last_c){
+                counter++;
+                a++;
+                i++;
+            }
+            factorized_path.append(counter).append(c);
+        }
+//        return arg_path;
+        return factorized_path.toString();
     }
     public static char[][] store_maze(BufferedReader reader) throws IOException {
         String lines;
         ArrayList<String> arr = new ArrayList<String>();
         while ((lines = reader.readLine()) != null) {
             int max_wall = 0;
-            for (int idx = 0; idx < lines.length(); idx++) {
-                if (lines.charAt(idx) == '#') {
+            for (int idx = 0; idx < lines.length(); idx++, max_wall++) {
+//                if (lines.charAt(idx) == '#') {
 //                    System.out.print("WALL ");
-                    max_wall++;
-                } else if (lines.charAt(idx) == ' ') {
+//                    max_wall++;
+//                } else if (lines.charAt(idx) == ' ') {
 //                    System.out.print("PASS ");
-                }
+//                }
             }
             arr.add(lines);
             if (max_wall > column){
                 column = max_wall;
             }
             row++;
-            System.out.print(System.lineSeparator());
+//            System.out.print(System.lineSeparator());
         }
-        System.out.println();
+//        System.out.println();
 
         char maze[][] = new char[row][column];
         String line;
