@@ -1,14 +1,11 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import org.apache.commons.cli.ParseException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 public class Maze {
     public static int row = 0;
     public static int column = 0;
-
     public static String find_path(BufferedReader reader) throws IOException{
         ExploreMaze exp = new ExploreMaze();
         String arg_path = exp.explore(reader);

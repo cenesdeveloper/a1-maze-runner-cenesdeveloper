@@ -1,7 +1,5 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import org.apache.commons.cli.ParseException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 public class ValidateMaze {
@@ -17,7 +15,13 @@ public class ValidateMaze {
         arg_path = arg_path.replaceAll(" ", "");
         arg_path = defactorize_path(arg_path);
         int n = arg_path.length();
+        boolean extra = false;
+
         for (int i = 0; i < n; i++){
+            if (enter_i == exit_i && enter_j == exit_j){
+                extra = true;
+                break;
+            }
             char c = arg_path.charAt(i);
             if (direction == 'F'){
                 if (c == 'F'){
@@ -76,7 +80,7 @@ public class ValidateMaze {
                 }
             }
         }
-        if (enter_i == exit_i && enter_j == exit_j){
+        if (enter_i == exit_i && enter_j == exit_j && !(extra)){
             return "correct path";
         }
         else {
