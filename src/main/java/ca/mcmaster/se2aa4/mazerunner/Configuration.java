@@ -30,7 +30,7 @@ public class Configuration {
             System.out.printf("%s\n", valid);
         }
         else{
-            String exp = explorer.find_path(reader);
+            String exp = explorer.factorize_path(reader);
             System.out.printf("%s\n", exp);
         }
         return reader;
