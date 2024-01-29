@@ -6,8 +6,8 @@ public class ExploreMaze {
     public static String explore(BufferedReader reader) throws IOException{
         String path = "";
         Maze maze = new Maze();
-        char[][] arr = maze.store_maze(reader);
-        int[] enter_exit = maze.Enter_Exit(arr);
+        char[][] arr = maze.storeMaze(reader);
+        int[] enter_exit = maze.enterExit(arr);
         int enter_i = enter_exit[0];
         int enter_j = enter_exit[1];
         int exit_i = enter_exit[2];

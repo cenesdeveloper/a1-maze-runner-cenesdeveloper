@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Maze {
     public static int row = 0;
     public static int column = 0;
-    public static String factorize_path(BufferedReader reader) throws IOException{
+    public static String factorizePath(BufferedReader reader) throws IOException{
         ExploreMaze exp = new ExploreMaze();
         String arg_path = exp.explore(reader);
         int n = arg_path.length();
@@ -32,7 +32,7 @@ public class Maze {
         }
         return factorized_path.toString();
     }
-    public static char[][] store_maze(BufferedReader reader) throws IOException {
+    public static char[][] storeMaze(BufferedReader reader) throws IOException {
         String lines;
         ArrayList<String> arr = new ArrayList<String>();
         while ((lines = reader.readLine()) != null) {
@@ -64,7 +64,7 @@ public class Maze {
         }
         return maze;
     }
-    public static int[] Enter_Exit(char[][] arr){
+    public static int[] enterExit(char[][] arr){
         int first_i = 0;
         int first_j = 0;
         int last_i = 0;

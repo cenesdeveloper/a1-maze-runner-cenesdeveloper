@@ -3,17 +3,17 @@ package ca.mcmaster.se2aa4.mazerunner;
 import java.io.BufferedReader;
 import java.io.IOException;
 public class ValidateMaze {
-    public static String path_valid(String arg_path, BufferedReader reader) throws IOException{
+    public static String pathValid(String arg_path, BufferedReader reader) throws IOException{
         Maze maze = new Maze();
-        char[][] arr = maze.store_maze(reader);
-        int[] enter_exit = maze.Enter_Exit(arr);
+        char[][] arr = maze.storeMaze(reader);
+        int[] enter_exit = maze.enterExit(arr);
         int enter_i = enter_exit[0];
         int enter_j = enter_exit[1];
         int exit_i = enter_exit[2];
         int exit_j = enter_exit[3];
         char direction = 'F';
         arg_path = arg_path.replaceAll(" ", "");
-        arg_path = defactorize_path(arg_path);
+        arg_path = defactorizePath(arg_path);
         int n = arg_path.length();
         boolean extra = false;
 
@@ -87,7 +87,7 @@ public class ValidateMaze {
             return "incorrect path";
         }
     }
-    private static String defactorize_path(String arg_path){
+    private static String defactorizePath(String arg_path){
         int n = arg_path.length();
         int num;
         int i = 0;
